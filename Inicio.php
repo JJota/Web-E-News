@@ -6,6 +6,27 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
+<?php
+	require_once("clases/Conexion.php");
+	require_once("clases/Usuario.php");
+
+	$con = new Conexion();
+	$con->Conectar();
+	$usu = new Usuario();
+
+	if (isset($_POST['btnRegistrar'])) 
+	{
+		$add = $usu->Agregar($_POST["txtCorreo"],$_POST["txtNombre"],$_POST["txtContraseña"],$_POST["txtFecha"],$_POST["genero"]);
+		if($add)
+		{
+			$error = "Exito en el registro";
+		}
+		else
+		{
+			$error = "Problemas en el registro intenta luego";
+		}
+	}
+?>
 <body>
 	<!-- Cabecera Menu -->
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -110,37 +131,38 @@
                     <h4>Formulario de Registro</h4>
                 </div>
         		<div class="modal-body">
-            		<form role="form" action="#" id="formRegistro" method="POST">
+            		<form role="form" action="Inicio.php" id="formRegistro" name="formRegistro" method="post">
             	    	<div class="form-group">
             	    		<label for="txtCorreo">E-Mail</label>
-                    		<input class="form-control" type="text" id="txtCorreo" placeholder="Ingresa Tu E-Mail">
+                    		<input class="form-control" type="text" id="txtCorreo" name="txtCorreo" placeholder="Ingresa Tu E-Mail">
 
                     		<label for="txtNombre">Nombre</label>
-                    		<input class="form-control" type="text" id="txtNombre" placeholder="Ingresa Tu Nombre">
+                    		<input class="form-control" type="text" id="txtNombre" name="txtNombre" placeholder="Ingresa Tu Nombre">
 
                     		<label for="txtContraseña">Contraseña</label>
-                    		<input class="form-control" type="password" id="txtContraseña" placeholder="Ingresa Tu Contraseña">
+                    		<input class="form-control" type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingresa Tu Contraseña">
 						
 							<label for="txtFecha">Fecha Nacimiento</label>
-                    		<input class="form-control" type="date" id="txtFecha">
+                    		<input class="form-control" type="date" id="txtFecha" name="txtFecha">
 
 							<label>Genero</label>
 							<br>
                     		<div class="btn-group" data-toggle="buttons">
 							  <label class="btn btn-default">
-							    <input type="radio" name="genero" id="rbM"> Masculino
+							    <input type="radio" name="genero" id="rbM" value="Masculino"> Masculino
 							  </label>
 							  <label class="btn btn-default">
-							    <input type="radio" name="genero" id="rbF"> Femenino
+							    <input type="radio" name="genero" id="rbF" value="Femenino"> Femenino
 							  </label>
 							</div>
             	    	</div>
-                    </form>
+                    
             	</div>
 	            <div class = "modal-footer">
-                    <a class="btn btn-primary" href="index.html">Aceptar</a>    
+                    <input type="submit" class="btn btn-primary" name="btnRegistrar" id="btnRegistrar" value="Registrar"> 
                     <a class="btn btn-danger" data-dismiss="modal">Cerrar</a>
 	            </div>
+	            </form>
             </div>
         </div>
     </div>
