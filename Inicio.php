@@ -83,12 +83,18 @@
                     <h4>Formulario de Ingreso</h4>
                 </div>
         		<div class="modal-body">
-					<p>Aqui podria el formulario de ingreso si tuviera uno</p>
-	            	<hr>
-	                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text                                   ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not                                        only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            	    <form role="form" action="#" id="formIngreso" method="POST">
+            	    	<div class="form-group">
+            	    		<label for="txtMail">E-Mail</label>
+                    		<input class="form-control" type="text" id="txtMail" placeholder="Ingresa Tu E-Mail">
+
+                    		<label for="txtPass">Contraseña</label>
+                    		<input class="form-control" type="password" id="txtPass" placeholder="Ingresa Tu Contraseña">
+            	    	</div>
+                    </form>
             	</div>
 	            <div class = "modal-footer">
-                    <a class="btn btn-primary" href="index.html">Aceptar</a>    
+                    <a class="btn btn-primary" href="Inicio.php">Aceptar</a>    
                     <a class="btn btn-danger" data-dismiss="modal">Cerrar</a>
 	            </div>
             </div>
@@ -104,9 +110,32 @@
                     <h4>Formulario de Registro</h4>
                 </div>
         		<div class="modal-body">
-					<p>Aqui podria el formulario de registro si tuviera uno</p>
-	            	<hr>
-	                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text                                   ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not                                        only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            		<form role="form" action="#" id="formRegistro" method="POST">
+            	    	<div class="form-group">
+            	    		<label for="txtCorreo">E-Mail</label>
+                    		<input class="form-control" type="text" id="txtCorreo" placeholder="Ingresa Tu E-Mail">
+
+                    		<label for="txtNombre">Nombre</label>
+                    		<input class="form-control" type="text" id="txtNombre" placeholder="Ingresa Tu Nombre">
+
+                    		<label for="txtContraseña">Contraseña</label>
+                    		<input class="form-control" type="password" id="txtContraseña" placeholder="Ingresa Tu Contraseña">
+						
+							<label for="txtFecha">Fecha Nacimiento</label>
+                    		<input class="form-control" type="date" id="txtFecha">
+
+							<label>Genero</label>
+							<br>
+                    		<div class="btn-group" data-toggle="buttons">
+							  <label class="btn btn-default">
+							    <input type="radio" name="genero" id="rbM"> Masculino
+							  </label>
+							  <label class="btn btn-default">
+							    <input type="radio" name="genero" id="rbF"> Femenino
+							  </label>
+							</div>
+            	    	</div>
+                    </form>
             	</div>
 	            <div class = "modal-footer">
                     <a class="btn btn-primary" href="index.html">Aceptar</a>    
