@@ -26,6 +26,21 @@
 			$error = "Problemas en el registro intenta luego";
 		}
 	}
+
+	if (isset($_POST['btnIngresar'])) 
+	{
+		$bus = $usu->Buscar($_POST["txtMail"],$_POST["txtPass"]);
+		if ($bus) 
+		{
+			session_start();
+			$_SESSION['usuario'] = $_POST["txtLogin"];
+			header('Location: Noticias/Internacional.php');
+		}
+		else
+		{
+			header('Location: Inicio.php');
+		}
+	}
 ?>
 <body>
 	<!-- Cabecera Menu -->
@@ -41,7 +56,7 @@
 		        <li><a href="#">Economia</a></li>
 		        <li><a href="#">Politica</a></li>
 		        <li><a href="#">Deportes</a></li>
-		        <li><a href="#">Internetas</a></li>
+		        <li><a href="#">Internet</a></li>
 		    </ul>
 		    <form class="navbar-form navbar-left" role="search">
 			    <div class="form-group">
@@ -99,25 +114,26 @@
 	<!-- Modal Ingreso -->
 	<div class="modal fade" id ="ingresar" role ="dialog">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class
+            ="modal-content">
                 <div class="modal-header">
                     <h4>Formulario de Ingreso</h4>
                 </div>
         		<div class="modal-body">
-            	    <form role="form" action="#" id="formIngreso" method="POST">
+            	    <form role="form" id="formIngreso" action="" name="formIngreso" method="POST">
             	    	<div class="form-group">
             	    		<label for="txtMail">E-Mail</label>
-                    		<input class="form-control" type="text" id="txtMail" placeholder="Ingresa Tu E-Mail">
+                    		<input class="form-control" type="text" id="txtMail" name="txtMail" placeholder="Ingresa Tu E-Mail">
 
                     		<label for="txtPass">Contraseña</label>
-                    		<input class="form-control" type="password" id="txtPass" placeholder="Ingresa Tu Contraseña">
+                    		<input class="form-control" type="password" id="txtPass" name="txtPass" placeholder="Ingresa Tu Contraseña">
             	    	</div>
-                    </form>
             	</div>
 	            <div class = "modal-footer">
-                    <a class="btn btn-primary" href="Inicio.php">Aceptar</a>    
+                    <input type="submit" class="btn btn-primary" name="btnIngresar" id="btnIngresar" value="Ingresar">    
                     <a class="btn btn-danger" data-dismiss="modal">Cerrar</a>
 	            </div>
+	            </form>
             </div>
         </div>
     </div>
