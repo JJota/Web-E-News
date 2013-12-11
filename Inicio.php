@@ -33,7 +33,7 @@
 		if ($bus) 
 		{
 			session_start();
-			$_SESSION['usuario'] = $_POST["txtLogin"];
+			$_SESSION['usuario'] = $_POST["txtMail"];
 			header('Location: Noticias/Internacional.php');
 		}
 		else

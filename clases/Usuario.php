@@ -22,5 +22,17 @@
 				return false;
 			}
 		}
+
+		private $usuEnc = array();
+		public function Nombre($mail)
+		{
+			$sql = "select * from usuario where mail = '$mail'";
+			$consulta = mysql_query($sql);
+			while($fila = mysql_fetch_array($consulta))
+			{
+				$this->usuEnc[]=$fila;
+			}
+			return $this->usuEnc;
+		}
 	}
 ?>

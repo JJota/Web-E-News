@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Internacional</title>
+	<title>Nacional</title>
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css">
 </head>
@@ -32,8 +32,8 @@
 		    	<a class="navbar-brand" href="#">E-News</a>
 		  	</div> 
 		    <ul class="nav navbar-nav">
-		        <li class="active"><a href="Internacional.php">Internacional</a></li>
-		        <li><a href="Nacional.php">Nacional</a></li>
+		        <li><a href="Internacional.php">Internacional</a></li>
+		        <li class="active"><a href="Nacional.php">Nacional</a></li>
 		        <li><a href="Economia.php">Economia</a></li>
 		        <li><a href="Politica.php">Politica</a></li>
 		        <li><a href="Deportes.php">Deportes</a></li>
