@@ -10,12 +10,18 @@
 	require_once("clases/Conexion.php");
 	require_once("clases/Usuario.php");
 	require_once("clases/Administrador.php");
+	require_once("clases/Editor.php");
+	require_once("clases/Periodista.php");
 
 	$con = new Conexion();
 	$con->Conectar();
 	$usu = new Usuario();
 	$adm = new Administrador();
+	$edi = new Editor();
+	$per = new Periodista();
+
 	session_start();
+
 	if (isset($_POST['btnRegistrar'])) 
 	{
 		$add = $usu->Agregar($_POST["txtCorreo"],$_POST["txtNombre"],$_POST["txtContraseña"],$_POST["txtFecha"],$_POST["genero"]);
@@ -50,12 +56,42 @@
 		if ($busAdm)
 		{
 			$_SESSION['admin'] = $_POST["txtMailAdm"];
-			header('Location: Admin/InicioAdm.php');
+			header('Location: Administrador/InicioAdm.php');
 		}
 		else
 		{
-			header('Location: Error.php');
-			$_SESSION['error'] = $_POST["txtMailAdm"];
+			header('Location: Inicio.php');
+			
+		}
+	}
+
+	if (isset($_POST['btnIngresarEdi']))
+	{
+		$busEdi = $edi->Buscar($_POST["txtMailEdi"],$_POST["txtPassEdi"]);
+		if ($busEdi)
+		{
+			$_SESSION['editor'] = $_POST["txtMailEdi"];
+			header('Location: Editor/InicioEdi.php');
+		}
+		else
+		{
+			header('Location: Inicio.php');
+			
+		}
+	}
+
+	if (isset($_POST['btnIngresarPer']))
+	{
+		$busPer = $per->Buscar($_POST["txtMailPer"],$_POST["txtPassPer"]);
+		if ($busPer)
+		{
+			$_SESSION['periodista'] = $_POST["txtMailPer"];
+			header('Location: Periodista/InicioPer.php');
+		}
+		else
+		{
+			header('Location: Inicio.php');
+			
 		}
 	}
 ?>
@@ -188,6 +224,62 @@
         </div>
     </div>
     <!-- FIN Modal Ingreso Admin -->
+
+    <!-- Modal Ingreso Periodista -->
+	<div class="modal fade" id ="ingresarPer" role ="dialog">
+        <div class="modal-dialog">
+            <div class
+            ="modal-content">
+                <div class="modal-header">
+                    <h4>Formulario de Ingreso Periodista</h4>
+                </div>
+        		<div class="modal-body">
+            	    <form role="form" id="formIngresoPer" action="" name="formIngresoPer" method="POST">
+            	    	<div class="form-group">
+            	    		<label for="txtMailPer">E-Mail</label>
+                    		<input class="form-control" type="text" id="txtMailPer" name="txtMailPer" placeholder="Ingresa Tu E-Mail">
+
+                    		<label for="txtPassPer">Contraseña</label>
+                    		<input class="form-control" type="password" id="txtPassPer" name="txtPassPer" placeholder="Ingresa Tu Contraseña">
+            	    	</div>
+            	</div>
+	            <div class = "modal-footer">
+                    <input type="submit" class="btn btn-primary" name="btnIngresarPer" id="btnIngresarPer" value="Ingresar">    
+                    <a class="btn btn-danger" data-dismiss="modal">Cerrar</a>
+	            </div>
+	            </form>
+            </div>
+        </div>
+    </div>
+    <!-- FIN Modal Ingreso Periodista -->
+
+    <!-- Modal Ingreso Editor -->
+	<div class="modal fade" id ="ingresarEdi" role ="dialog">
+        <div class="modal-dialog">
+            <div class
+            ="modal-content">
+                <div class="modal-header">
+                    <h4>Formulario de Ingreso Editor</h4>
+                </div>
+        		<div class="modal-body">
+            	    <form role="form" id="formIngresoEdi" action="" name="formIngresoEdi" method="POST">
+            	    	<div class="form-group">
+            	    		<label for="txtMailEdi">E-Mail</label>
+                    		<input class="form-control" type="text" id="txtMailEdi" name="txtMailEdi" placeholder="Ingresa Tu E-Mail">
+
+                    		<label for="txtPassEdi">Contraseña</label>
+                    		<input class="form-control" type="password" id="txtPassEdi" name="txtPassEdi" placeholder="Ingresa Tu Contraseña">
+            	    	</div>
+            	</div>
+	            <div class = "modal-footer">
+                    <input type="submit" class="btn btn-primary" name="btnIngresarEdi" id="btnIngresarEdi" value="Ingresar">    
+                    <a class="btn btn-danger" data-dismiss="modal">Cerrar</a>
+	            </div>
+	            </form>
+            </div>
+        </div>
+    </div>
+    <!-- FIN Modal Ingreso Editor -->
 
     <!-- Modal Registro -->
     <div class="modal fade" id ="registro" role ="dialog">
