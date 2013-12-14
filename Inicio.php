@@ -9,11 +9,13 @@
 <?php
 	require_once("clases/Conexion.php");
 	require_once("clases/Usuario.php");
+	require_once("clases/Administrador.php");
 
 	$con = new Conexion();
 	$con->Conectar();
 	$usu = new Usuario();
-
+	$adm = new Administrador();
+	session_start();
 	if (isset($_POST['btnRegistrar'])) 
 	{
 		$add = $usu->Agregar($_POST["txtCorreo"],$_POST["txtNombre"],$_POST["txtContraseña"],$_POST["txtFecha"],$_POST["genero"]);
@@ -32,13 +34,28 @@
 		$bus = $usu->Buscar($_POST["txtMail"],$_POST["txtPass"]);
 		if ($bus) 
 		{
-			session_start();
+			
 			$_SESSION['usuario'] = $_POST["txtMail"];
 			header('Location: Noticias/Internacional.php');
 		}
 		else
 		{
 			header('Location: Inicio.php');
+		}
+	}
+
+	if (isset($_POST['btnIngresarAdm']))
+	{
+		$busAdm = $adm->Buscar($_POST["txtMailAdm"],$_POST["txtPassAdm"]);
+		if ($busAdm)
+		{
+			$_SESSION['admin'] = $_POST["txtMailAdm"];
+			header('Location: Admin/InicioAdm.php');
+		}
+		else
+		{
+			header('Location: Error.php');
+			$_SESSION['error'] = $_POST["txtMailAdm"];
 		}
 	}
 ?>
@@ -106,7 +123,12 @@
 	<!-- Footer -->
 	<div class="navbar navbar-default navbar-fixed-bottom">
         <div class = "container">
-            <p class = "navbar-text">Desarrollado por LA ALDEA GANGRENA</p>
+        	<ul class="nav navbar-nav">
+			    <li><a href="#ingresarAdm" data-toggle="modal">Administrador</a></li>
+			    <li><a href="#ingresarEdi" data-toggle="modal">Editor</a></li>
+			    <li><a href="#ingresarPer" data-toggle="modal">Periodista</a></li>
+			</ul>
+            <p class = "navbar-text navbar-right">Desarrollado por JCD &copy Copyright 2013</p>
         </div>
     </div>
 	<!-- FIN Footer -->
@@ -138,6 +160,34 @@
         </div>
     </div>
     <!-- FIN Modal Ingreso -->
+
+    <!-- Modal Ingreso Admin -->
+	<div class="modal fade" id ="ingresarAdm" role ="dialog">
+        <div class="modal-dialog">
+            <div class
+            ="modal-content">
+                <div class="modal-header">
+                    <h4>Formulario de Ingreso Administrador</h4>
+                </div>
+        		<div class="modal-body">
+            	    <form role="form" id="formIngresoAdm" action="" name="formIngresoAdm" method="POST">
+            	    	<div class="form-group">
+            	    		<label for="txtMailAdm">E-Mail</label>
+                    		<input class="form-control" type="text" id="txtMailAdm" name="txtMailAdm" placeholder="Ingresa Tu E-Mail">
+
+                    		<label for="txtPassAdm">Contraseña</label>
+                    		<input class="form-control" type="password" id="txtPassAdm" name="txtPassAdm" placeholder="Ingresa Tu Contraseña">
+            	    	</div>
+            	</div>
+	            <div class = "modal-footer">
+                    <input type="submit" class="btn btn-primary" name="btnIngresarAdm" id="btnIngresarAdm" value="Ingresar">    
+                    <a class="btn btn-danger" data-dismiss="modal">Cerrar</a>
+	            </div>
+	            </form>
+            </div>
+        </div>
+    </div>
+    <!-- FIN Modal Ingreso Admin -->
 
     <!-- Modal Registro -->
     <div class="modal fade" id ="registro" role ="dialog">

@@ -29,7 +29,7 @@
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 		<div class="container">
 	  		<div class="navbar-header">
-		    	<a class="navbar-brand" href="#">E-News</a>
+		    	<a class="navbar-brand" href="../Inicio.php">E-News</a>
 		  	</div> 
 		    <ul class="nav navbar-nav">
 		        <li><a href="Internacional.php">Internacional</a></li>
