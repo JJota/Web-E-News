@@ -6,6 +6,24 @@
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css">
 </head>
+<?php
+	require_once("../clases/Conexion.php");
+	require_once("../clases/Usuario.php");
+
+	$con = new Conexion();
+	$con->Conectar();
+	$usu = new Usuario();
+
+	session_start();
+
+	if(isset($_GET["mail"]))
+    {
+        $del = $usu->Eliminar($_GET["mail"]);
+        if (!$del) {
+            $error = "no se logro eliminar";
+        }
+    }
+?>
 <body>
 	<!-- Cabecera Menu -->
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -18,9 +36,9 @@
 		        <li class="dropdown">
 		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario<b class="caret"></b></a>
 		        	<ul class="dropdown-menu">
-			          <li><a href="AddUsuario.php">Agregar Usuario</a></li>
-			          <li><a href="">Modificar Usuario</a></li>
-			          <li><a href="DelUsuario.php">Eliminar Usuario</a></li>
+			          <li><a href="#">Agregar Usuario</a></li>
+			          <li><a href="#">Modificar Usuario</a></li>
+			          <li><a href="#">Eliminar Usuario</a></li>
 		        	</ul>
 		        </li>
 		        <li class="dropdown">
@@ -52,6 +70,42 @@
 		</div>
 	</nav>
 	<!-- FIN Cabecera Menu -->
+
+	<!-- Contenido Pricipal -->
+	<section class="container">
+		<div class="row">
+			<article class="col-md-6">
+				<h3>Lista De Usuarios Registrados</h3>
+				<table class="table table-striped" border="0" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+					<th>Mail</th>
+					<th>Nombre</th>
+					<th>Pass</th>
+					<th>Fecha Nac.</th>
+					<th>Genero</th>
+					<th>Eliminar</th>
+				</tr>	
+				<?php
+					$fila = $usu->listarTodo();
+				  for($i=0; $i<count($fila);$i++)
+				  {
+				  ?>
+				  <tr>
+				    <td><?php echo $fila[$i]["mail"];   ?></td>
+				    <td><?php echo $fila[$i]["nombre"];   ?></td>
+				    <td><?php echo $fila[$i]["pass"];   ?></td>
+				    <td><?php echo $fila[$i]["fechaN"];   ?></td>
+				    <td><?php echo $fila[$i]["genero"];   ?></td>
+				    <td><a href="DelUsuario.php?mail=<?php echo $fila[$i]["mail"]; ?>"><img src="../img/Del.png"/> </a></td>
+				  </tr>
+				<?php
+				}
+				?>
+            </table>
+			</article>
+		</div>
+	</section>
+	<!-- FIN Contenido Pricipal (Noticias) -->
 
 	<script type="text/javascript" src="../js/holder.js"></script>
 	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

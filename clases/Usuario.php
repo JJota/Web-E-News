@@ -8,6 +8,13 @@
 			return $consulta;
 		}
 
+		public function Eliminar($mail)
+		{
+			$sql = "delete from usuario where mail = '$mail'";
+			$consulta = mysql_query($sql);
+			return $consulta;
+		}
+
 		public function Buscar($mail,$pass)
 		{
 			$sql = "select * from usuario where mail = '$mail' and pass = '$pass'";
@@ -33,6 +40,18 @@
 				$this->usuEnc[]=$fila;
 			}
 			return $this->usuEnc;
+		}
+
+		private $todasLosUsuarios = array();
+		public function listarTodo()
+		{
+			$sql = "select * from usuario";
+			$consulta = mysql_query($sql);
+			while($fila = mysql_fetch_array($consulta))
+			{
+				$this->todasLosUsuarios[]=$fila;
+			}
+			return $this->todasLosUsuarios;
 		}
 	}
 ?>
