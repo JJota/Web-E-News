@@ -41,25 +41,25 @@
 		        <li class="dropdown">
 		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario<b class="caret"></b></a>
 		        	<ul class="dropdown-menu">
-			          <li><a href="#">Agregar Usuario</a></li>
-			          <li><a href="#">Modificar Usuario</a></li>
-			          <li><a href="#">Eliminar Usuario</a></li>
+			          <li><a href="AddUsuario.php">Agregar Usuario</a></li>
+			          <li><a href="">Modificar Usuario</a></li>
+			          <li><a href="DelUsuario.php">Eliminar Usuario</a></li>
 		        	</ul>
 		        </li>
 		        <li class="dropdown">
 		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Editor<b class="caret"></b></a>
 		        	<ul class="dropdown-menu">
-			          <li><a href="#">Agregar Editor</a></li>
+			          <li><a href="AddEditor.php">Agregar Editor</a></li>
 			          <li><a href="#">Modificar Editor</a></li>
-			          <li><a href="#">Eliminar Editor</a></li>
+			          <li><a href="DelEditor.php">Eliminar Editor</a></li>
 		        	</ul>
 		        </li>
 		        <li class="dropdown">
-		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario<b class="caret"></b></a>
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Periodista<b class="caret"></b></a>
 		        	<ul class="dropdown-menu">
-			          <li><a href="#">Agregar Periodista</a></li>
+			          <li><a href="AddPeriodista.php">Agregar Periodista</a></li>
 			          <li><a href="#">Modificar Periodista</a></li>
-			          <li><a href="#">Eliminar Periodista</a></li>
+			          <li><a href="DelPeriodista.php">Eliminar Periodista</a></li>
 		        	</ul>
 		        </li>
 		    </ul>

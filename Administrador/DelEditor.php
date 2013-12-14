@@ -8,17 +8,17 @@
 </head>
 <?php
 	require_once("../clases/Conexion.php");
-	require_once("../clases/Usuario.php");
+	require_once("../clases/Editor.php");
 
 	$con = new Conexion();
 	$con->Conectar();
-	$usu = new Usuario();
+	$edi = new Editor();
 
 	session_start();
 
 	if(isset($_GET["mail"]))
     {
-        $del = $usu->Eliminar($_GET["mail"]);
+        $del = $edi->Eliminar($_GET["mail"]);
         if (!$del) {
             $error = "no se logro eliminar";
         }
@@ -75,7 +75,7 @@
 	<section class="container">
 		<div class="row">
 			<article class="col-md-8">
-				<h3>Lista De Usuarios Registrados</h3>
+				<h3>Lista De Editores Registrados</h3>
 				<table class="table table-striped" border="0" cellspacing="0" cellpadding="0" align="center">
 				<tr>
 					<th>Mail</th>
@@ -86,7 +86,7 @@
 					<th>Eliminar</th>
 				</tr>	
 				<?php
-					$fila = $usu->listarTodo();
+					$fila = $edi->listarTodo();
 				  for($i=0; $i<count($fila);$i++)
 				  {
 				  ?>
@@ -96,7 +96,7 @@
 				    <td><?php echo $fila[$i]["pass"];   ?></td>
 				    <td><?php echo $fila[$i]["fechaN"];   ?></td>
 				    <td><?php echo $fila[$i]["genero"];   ?></td>
-				    <td><a href="DelUsuario.php?mail=<?php echo $fila[$i]["mail"]; ?>"><img src="../img/Del.png"/> </a></td>
+				    <td><a href="DelEditor.php?mail=<?php echo $fila[$i]["mail"]; ?>"><img src="../img/Del.png"/> </a></td>
 				  </tr>
 				<?php
 				}

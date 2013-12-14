@@ -15,5 +15,31 @@
 				return false;
 			}
 		}
+
+		public function Agregar($mail,$nombre,$pass,$fechaN,$genero)
+		{
+			$sql = "insert into editor values ('$mail','$nombre','$pass','$fechaN','$genero')";
+			$consulta = mysql_query($sql);
+			return $consulta;
+		}
+
+		public function Eliminar($mail)
+		{
+			$sql = "delete from editor where mail = '$mail'";
+			$consulta = mysql_query($sql);
+			return $consulta;
+		}
+
+		private $todasLosEditores = array();
+		public function listarTodo()
+		{
+			$sql = "select * from editor";
+			$consulta = mysql_query($sql);
+			while($fila = mysql_fetch_array($consulta))
+			{
+				$this->todasLosEditores[]=$fila;
+			}
+			return $this->todasLosEditores;
+		}
 	}
 ?>

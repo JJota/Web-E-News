@@ -8,21 +8,26 @@
 </head>
 <?php
 	require_once("../clases/Conexion.php");
-	require_once("../clases/Usuario.php");
+	require_once("../clases/Periodista.php");
 
 	$con = new Conexion();
 	$con->Conectar();
-	$usu = new Usuario();
+	$per = new Periodista();
 
 	session_start();
 
-	if(isset($_GET["mail"]))
-    {
-        $del = $usu->Eliminar($_GET["mail"]);
-        if (!$del) {
-            $error = "no se logro eliminar";
-        }
-    }
+	if (isset($_POST['btnAddPer'])) 
+	{
+		$add = $per->Agregar($_POST["txtCorreo"],$_POST["txtNombre"],$_POST["txtContraseña"],$_POST["txtFecha"],$_POST["categoria"],$_POST["genero"]);
+		if($add)
+		{
+			$error = "Exito en el registro";
+		}
+		else
+		{
+			$error = "Problemas en el registro intenta luego";
+		}
+	}
 ?>
 <body>
 	<!-- Cabecera Menu -->
@@ -74,34 +79,47 @@
 	<!-- Contenido Pricipal -->
 	<section class="container">
 		<div class="row">
-			<article class="col-md-8">
-				<h3>Lista De Usuarios Registrados</h3>
-				<table class="table table-striped" border="0" cellspacing="0" cellpadding="0" align="center">
-				<tr>
-					<th>Mail</th>
-					<th>Nombre</th>
-					<th>Pass</th>
-					<th>Fecha Nac.</th>
-					<th>Genero</th>
-					<th>Eliminar</th>
-				</tr>	
-				<?php
-					$fila = $usu->listarTodo();
-				  for($i=0; $i<count($fila);$i++)
-				  {
-				  ?>
-				  <tr>
-				    <td><?php echo $fila[$i]["mail"];   ?></td>
-				    <td><?php echo $fila[$i]["nombre"];   ?></td>
-				    <td><?php echo $fila[$i]["pass"];   ?></td>
-				    <td><?php echo $fila[$i]["fechaN"];   ?></td>
-				    <td><?php echo $fila[$i]["genero"];   ?></td>
-				    <td><a href="DelUsuario.php?mail=<?php echo $fila[$i]["mail"]; ?>"><img src="../img/Del.png"/> </a></td>
-				  </tr>
-				<?php
-				}
-				?>
-            </table>
+			<article class="col-md-6">
+				<h3>Datos Del Nuevo PeriodPer</h3>
+				<form role="form" action="" id="formAddPer" name="formAddPer" method="post">
+            	    	<div class="form-group">
+            	    		<label for="txtCorreo">E-Mail</label>
+                    		<input class="form-control" type="text" id="txtCorreo" name="txtCorreo" placeholder="Ingresa Tu E-Mail">
+
+                    		<label for="txtNombre">Nombre</label>
+                    		<input class="form-control" type="text" id="txtNombre" name="txtNombre" placeholder="Ingresa Tu Nombre">
+
+                    		<label for="txtContraseña">Contraseña</label>
+                    		<input class="form-control" type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingresa Tu Contraseña">
+						
+							<label for="txtFecha">Fecha Nacimiento</label>
+                    		<input class="form-control" type="date" id="txtFecha" name="txtFecha">
+							
+							<label for="categoria">Categoria</label>
+							<br>
+							<select class="form-control" name = "categoria">
+							  <option value = "Internacional">Internacional</option>
+							  <option value = "Nacional">Nacional</option>
+							  <option value = "Economia">Economia</option>
+							  <option value = "Politica">Politica</option>
+							  <option value = "Deportes">Deportes</option>
+							  <option value = "Internet">Internet</option>
+							</select>
+
+							<label>Genero</label>
+							<br>
+                    		<div class="btn-group" data-toggle="buttons">
+							  <label class="btn btn-default">
+							    <input type="radio" name="genero" id="rbM" value="Masculino"> Masculino
+							  </label>
+							  <label class="btn btn-default">
+							    <input type="radio" name="genero" id="rbF" value="Femenino"> Femenino
+							  </label>
+							</div>
+            	    	</div>
+            	    	<input type="submit" class="btn btn-primary" name="btnAddPer" id="btnAddPer" value="Agregar">
+            	    	<input type="reset" class="btn btn-danger" name="btnLimpiar" id="btnLimpiar" value="Limpiar"> 
+    	    	</form>	
 			</article>
 		</div>
 	</section>

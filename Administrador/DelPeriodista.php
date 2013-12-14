@@ -8,17 +8,17 @@
 </head>
 <?php
 	require_once("../clases/Conexion.php");
-	require_once("../clases/Usuario.php");
+	require_once("../clases/Periodista.php");
 
 	$con = new Conexion();
 	$con->Conectar();
-	$usu = new Usuario();
+	$per = new Periodista();
 
 	session_start();
 
 	if(isset($_GET["mail"]))
     {
-        $del = $usu->Eliminar($_GET["mail"]);
+        $del = $per->Eliminar($_GET["mail"]);
         if (!$del) {
             $error = "no se logro eliminar";
         }
@@ -82,11 +82,12 @@
 					<th>Nombre</th>
 					<th>Pass</th>
 					<th>Fecha Nac.</th>
+					<th>Categoria</th>
 					<th>Genero</th>
 					<th>Eliminar</th>
 				</tr>	
 				<?php
-					$fila = $usu->listarTodo();
+					$fila = $per->listarTodo();
 				  for($i=0; $i<count($fila);$i++)
 				  {
 				  ?>
@@ -95,8 +96,9 @@
 				    <td><?php echo $fila[$i]["nombre"];   ?></td>
 				    <td><?php echo $fila[$i]["pass"];   ?></td>
 				    <td><?php echo $fila[$i]["fechaN"];   ?></td>
+				    <td><?php echo $fila[$i]["categoria"];   ?></td>
 				    <td><?php echo $fila[$i]["genero"];   ?></td>
-				    <td><a href="DelUsuario.php?mail=<?php echo $fila[$i]["mail"]; ?>"><img src="../img/Del.png"/> </a></td>
+				    <td><a href="DelPeriodista.php?mail=<?php echo $fila[$i]["mail"]; ?>"><img src="../img/Del.png"/> </a></td>
 				  </tr>
 				<?php
 				}
