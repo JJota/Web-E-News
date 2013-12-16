@@ -16,6 +16,18 @@
 			}
 		}
 
+		private $perEnc = array();
+		public function Nombre($mail)
+		{
+			$sql = "select * from periodista where mail = '$mail'";
+			$consulta = mysql_query($sql);
+			while($fila = mysql_fetch_array($consulta))
+			{
+				$this->perEnc[]=$fila;
+			}
+			return $this->perEnc;
+		}
+
 		public function Agregar($mail,$nombre,$pass,$fechaN,$categoria,$genero)
 		{
 			$sql = "insert into periodista values ('$mail','$nombre','$pass','$fechaN','$categoria','$genero')";
