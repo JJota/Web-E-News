@@ -40,8 +40,8 @@
 		    	<a class="navbar-brand" href="../Inicio.php">E-News</a>
 		  	</div> 
 		    <ul class="nav navbar-nav">
-		        <li class="active"><a href="">Inicio</a></li>
-		        <li><a href="">Agregar Noticia</a></li>
+		        <li class="active"><a href="../Inicio.php">Inicio</a></li>
+		        <li><a href="AddNoticia.php">Agregar Noticia</a></li>
 		        <li><a href="">Editar Noticia</a></li>
 		        <li><a href="">Ver Estado De Noticias</a></li>
 		    </ul>

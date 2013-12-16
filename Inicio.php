@@ -100,16 +100,16 @@
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 		<div class="container">
 	  		<div class="navbar-header">
-		    	<a class="navbar-brand" href="#">E-News</a>
+		    	<a class="navbar-brand" href="Inicio.php">E-News</a>
 		  	</div> 
 		    <ul class="nav navbar-nav">
 				<li class="active"><a href="#">Hoy</a></li>
-		        <li><a href="#">Internacional</a></li>
-		        <li><a href="#">Nacional</a></li>
-		        <li><a href="#">Economia</a></li>
-		        <li><a href="#">Politica</a></li>
-		        <li><a href="#">Deportes</a></li>
-		        <li><a href="#">Internet</a></li>
+		        <li><a href="#ingresar" data-toggle="modal">Internacional</a></li>
+		        <li><a href="#ingresar" data-toggle="modal">Nacional</a></li>
+		        <li><a href="#ingresar" data-toggle="modal">Economia</a></li>
+		        <li><a href="#ingresar" data-toggle="modal">Politica</a></li>
+		        <li><a href="#ingresar" data-toggle="modal">Deportes</a></li>
+		        <li><a href="#ingresar" data-toggle="modal">Internet</a></li>
 		    </ul>
 		    <form class="navbar-form navbar-left" role="search">
 			    <div class="form-group">

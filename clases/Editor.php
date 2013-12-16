@@ -41,5 +41,17 @@
 			}
 			return $this->todasLosEditores;
 		}
+
+		private $ediEnc = array();
+		public function Nombre($mail)
+		{
+			$sql = "select * from editor where mail = '$mail'";
+			$consulta = mysql_query($sql);
+			while($fila = mysql_fetch_array($consulta))
+			{
+				$this->ediEnc[]=$fila;
+			}
+			return $this->ediEnc;
+		}
 	}
 ?>

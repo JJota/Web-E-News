@@ -15,7 +15,7 @@
 		  	</div> 
 		    <ul class="nav navbar-nav">
 		        <li class="active"><a href="">Inicio</a></li>
-		        <li><a href="">Publicar Noticias</a></li>
+		        <li><a href="Publicar.php">Publicar Noticias</a></li>
 		        <li><a href="">Ver Noticias Publicadas</a></li>
 		    </ul>
 		    <form class="navbar-form navbar-left" role="search">

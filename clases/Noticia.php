@@ -39,6 +39,26 @@
 				}
 				return $this->listaNoticias;
 		}
+
+		private $lstNoticias = array(); 
+		public function Listar()
+		{
+			$sql = "SELECT * FROM noticia where estado = 0";
+			$consulta= mysql_query($sql);
+			while($fila = mysql_fetch_array($consulta))
+				{
+					$this->lstNoticias[]=$fila;
+				}
+				return $this->lstNoticias;
+		}
+
+		public function Publicar($titulo,$edi)
+		{
+			$sql = "UPDATE noticia SET estado = 1, editor = '$edi' where titulo = '$titulo'";
+			$consulta = mysql_query($sql);
+			return $consulta;
+		}
+
 	}
 
 ?>
