@@ -12,6 +12,7 @@
 	require_once("clases/Administrador.php");
 	require_once("clases/Editor.php");
 	require_once("clases/Periodista.php");
+	require_once("clases/Noticia.php");
 
 	$con = new Conexion();
 	$con->Conectar();
@@ -19,6 +20,7 @@
 	$adm = new Administrador();
 	$edi = new Editor();
 	$per = new Periodista();
+	$not = new Noticia();
 
 	session_start();
 
@@ -127,32 +129,25 @@
 
 	<!-- Contenido Pricipal (Noticias) -->
 	<section class="container">
+		
+
 		<div class="row">
-			<article class="col-md-8">
-				<img src="holder.js/100%x300/text:Principal/#CC1414:#FFF" alt="">	
-			</article>
-			<article class="col-md-4">
-				<h3>Titulo</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quae, quasi, consequatur unde magni labore reiciendis error veniam et voluptas dolorem eligendi temporibus accusamus aliquam ratione deleniti at! Accusantium, ab.</p>
-			</article>
+			<?php
+					$fila = $not->Hoy();
+				  for($i=0; $i<count($fila);$i++)
+				  {
+				  ?>
+					<article class="col-md-4">
+						<h3 class="text-center"><?php echo $fila[$i]["titulo"];   ?></h3>
+						<img src="Noticias/img/<?php echo $fila[$i]["imagen"];   ?>" alt="" width="380">				
+						<p><?php echo $fila[$i]["texto"];   ?></p>
+					</article>
+				<?php
+				}
+				?>
 		</div>
-		<div class="row">
-			<article class="col-md-4">
-				<h3 class="text-center">Titulo</h3>
-				<img src="holder.js/350x200/text:Deportes/#CC1414:#FFF" alt="">					
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quae, quasi, consequatur unde magni labore reiciendis error veniam et voluptas dolorem eligendi temporibus accusamus aliquam ratione deleniti at! Accusantium, ab.</p>
-			</article>
-			<article class="col-md-4">
-				<h3 class="text-center">Titulo</h3>
-				<img src="holder.js/350x200/text:Internacional/#CC1414:#FFF" alt="">	
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quae, quasi, consequatur unde magni labore reiciendis error veniam et voluptas dolorem eligendi temporibus accusamus aliquam ratione deleniti at! Accusantium, ab.</p>
-			</article>
-			<article class="col-md-4">
-				<h3 class="text-center">Titulo</h3>
-				<img src="holder.js/350x200/text:Politica/#CC1414:#FFF" alt="">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quae, quasi, consequatur unde magni labore reiciendis error veniam et voluptas dolorem eligendi temporibus accusamus aliquam ratione deleniti at! Accusantium, ab.</p>
-			</article>
-		</div>
+
+		
 	</section>
 	<!-- FIN Contenido Pricipal (Noticias) -->
 

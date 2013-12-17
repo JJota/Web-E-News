@@ -9,10 +9,12 @@
 <?php 
 	require_once("../clases/Conexion.php");
 	require_once("../clases/Usuario.php");
+	require_once("../clases/Noticia.php");
 
 	$con = new Conexion();
 	$con->Conectar();
 	$usu = new Usuario();
+	$not = new Noticia();
 	session_start();			
 	if(isset($_SESSION['usuario']))
 	{
@@ -51,5 +53,41 @@
 		</div>
 	</nav>
 	<!-- FIN Cabecera Menu -->
+
+	<!-- Contenido Pricipal -->
+	<section class="container">
+		<div class="row">
+			<article class="col-md-12">
+				<table class="table " border="0" cellspacing="0" cellpadding="0" align="center">
+				<?php
+					$fila = $not->Deportes();
+				  for($i=0; $i<count($fila);$i++)
+				  {
+				  ?>
+				  <tr>
+				    
+				    <th><?php echo $fila[$i]["titulo"];   ?></th>
+				    
+				    
+				    
+				  </tr>
+				  <tr>
+				  	<td><img src="../Noticias/img/<?php echo $fila[$i]["imagen"];   ?>" alt="" width="300"></td>
+				  </tr>
+				  <tr>
+				  	<td><?php echo $fila[$i]["texto"];   ?></td>
+				  </tr>
+				  <tr>
+				  	<td>Publicada El : <?php echo $fila[$i]["fechaP"];   ?></td>
+				    <td>Periodista :<?php echo $fila[$i]["periodista"];   ?></td>
+				  </tr>
+				<?php
+				}
+				?>
+            </table>
+			</article>
+		</div>
+	</section>
+	<!-- FIN Contenido Pricipal (Noticias) -->
 </body>
 </html>
