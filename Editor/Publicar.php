@@ -82,7 +82,7 @@
 				  <tr>
 				    
 				    
-				    <td><img src="holder.js/300x300/text:Imagen De Noticia/#CC1414:#FFF" alt=""></td>
+				    <td><img src="../Noticias/img/<?php echo $fila[$i]["imagen"];   ?>" alt="" width="300"></td>
 				    <td><?php echo $fila[$i]["fechaP"];   ?></td>
 				    <td><?php echo $fila[$i]["periodista"];   ?></td>
 				    <td><?php echo $fila[$i]["categoria"];   ?></td>

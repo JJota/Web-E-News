@@ -29,7 +29,15 @@
 
 	if (isset($_POST["btnAddNot"]))
 	{
-		$add = $not->Agregar($_POST["txtTitulo"],$_POST["txtImagen"],$_POST["txtTexto"],$PerEnc[0]["mail"],$PerEnc[0]["categoria"]);
+		$add = $not->Agregar($_POST["txtTitulo"],$_FILES["txtImagen"]["name"],$_POST["txtTexto"],$PerEnc[0]["mail"],$PerEnc[0]["categoria"]);
+		if($add)
+		{
+			move_uploaded_file($_FILES["txtImagen"]["tmp_name"], "../Noticias/img/".$_FILES["txtImagen"]["name"]);
+		}
+		else
+		{
+			$error = "No se agrego";
+		}
 	}
 ?>
 <body>
@@ -63,7 +71,7 @@
 		<div class="row">
 			<article class="col-md-6">
 				<h3>Nueva Noticia</h3>
-				<form role="form" action="" id="formAddNoticia" name="formAddNoticia" method="post">
+				<form role="form" action="AddNoticia.php" id="formAddNoticia" name="formAddNoticia" method="post" enctype="multipart/form-data">
             	    	<div class="form-group">
             	    		<label for="txtTitulo">Titulo</label>
                     		<input class="form-control" type="text" id="txtTitulo" name="txtTitulo" placeholder="Ingresa el titulo">
