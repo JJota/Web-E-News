@@ -39,6 +39,12 @@
 			$error = "No se agrego";
 		}
 	}
+
+	if(isset($_GET["per"]))
+    {
+        session_destroy();
+        header('Location: ../Inicio.php');
+    }
 ?>
 <body>
 	<!-- Cabecera Menu -->
@@ -61,6 +67,7 @@
 		    </form>
 		    <ul class="nav navbar-nav navbar-right">
 			    <li><p class="navbar-text navbar-right"><?php if(isset($PerEnc)) echo $PerEnc[0]["nombre"] ?></p></li>
+			    <li><a href="AddNoticia.php?per=<?php echo $_SESSION['periodista']; ?>">Cerrar Sesion</a></li>
 			</ul>
 		</div>
 	</nav>

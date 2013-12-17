@@ -6,6 +6,30 @@
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css">
 </head>
+<?php
+	require_once("../clases/Conexion.php");
+	require_once("../clases/Editor.php");
+
+	$con = new Conexion();
+	$con->Conectar();
+	$edi = new Editor();
+	session_start();			
+	if(isset($_SESSION['editor']))
+	{
+
+		$EdiEnc = $edi->Nombre($_SESSION['editor']);
+	}
+	else
+	{
+		header('Location: ../Inicio.php');	
+	}
+
+	if(isset($_GET["edi"]))
+    {
+        session_destroy();
+        header('Location: ../Inicio.php');
+    }
+?>
 <body>
 	<!-- Cabecera Menu -->
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -26,6 +50,7 @@
 		    </form>
 		    <ul class="nav navbar-nav navbar-right">
 			    <li><p class="navbar-text navbar-right"><?php if(isset($EdiEnc)) echo $EdiEnc[0]["nombre"] ?></p></li>
+			    <li><a href="InicioEdi.php?edi=<?php echo $_SESSION['editor']; ?>">Cerrar Sesion</a></li>
 			</ul>
 		</div>
 	</nav>

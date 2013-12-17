@@ -23,8 +23,15 @@
 	}
 	else
 	{
-		header('Location:Index.php');	
+		header('Location: ../Inicio.php');	
 	}
+
+
+	if(isset($_GET["usuario"]))
+    {
+        session_destroy();
+        header('Location: ../Inicio.php');
+    }
 ?>
 <body>
 	<!-- Cabecera Menu -->
@@ -49,6 +56,7 @@
 		    </form>
 		    <ul class="nav navbar-nav navbar-right">
 			    <li><p class="navbar-text navbar-right"><?php if(isset($usuEnc)) echo $usuEnc[0]["nombre"] ?></p></li>
+			    <li><a href="Internacional.php?usuario=<?php echo $_SESSION['usuario']; ?>">Cerrar Sesion</a></li>
 			</ul>
 		</div>
 	</nav>

@@ -9,12 +9,28 @@
 <?php
 	require_once("../clases/Conexion.php");
 	require_once("../clases/Usuario.php");
+	require_once("../clases/Administrador.php");
 
 	$con = new Conexion();
 	$con->Conectar();
 	$usu = new Usuario();
+	$adm = new Administrador();
+	session_start();			
+	if(isset($_SESSION['admin']))
+	{
 
-	session_start();
+		$admEnc = $adm->Nombre($_SESSION['admin']);
+	}
+	else
+	{
+		header('Location: ../Inicio.php');	
+	}
+
+	if(isset($_GET["adm"]))
+    {
+        session_destroy();
+        header('Location: ../Inicio.php');
+    }
 
 	if(isset($_GET["mail"]))
     {
@@ -66,6 +82,7 @@
 		    </form>
 		    <ul class="nav navbar-nav navbar-right">
 			    <li><p class="navbar-text navbar-right"><?php if(isset($admEnc)) echo $admEnc[0]["nombre"] ?></p></li>
+			    <li><a href="DelUsuario.php?adm=<?php echo $_SESSION['admin']; ?>">Cerrar Sesion</a></li>
 			</ul>
 		</div>
 	</nav>

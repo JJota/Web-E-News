@@ -34,6 +34,11 @@
             $error = "no se logro eliminar";
         }
     }
+    if(isset($_GET["edi"]))
+    {
+        session_destroy();
+        header('Location: ../Inicio.php');
+    }
 
 ?>
 <body>
@@ -55,6 +60,7 @@
 		    </form>
 		    <ul class="nav navbar-nav navbar-right">
 			    <li><p class="navbar-text navbar-right"><?php if(isset($EdiEnc)) echo $EdiEnc[0]["nombre"] ?></p></li>
+			    <li><a href="Publicar.php?edi=<?php echo $_SESSION['editor']; ?>">Cerrar Sesion</a></li>
 			</ul>
 		</div>
 	</nav>

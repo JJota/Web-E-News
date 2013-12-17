@@ -6,6 +6,31 @@
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css">
 </head>
+<?php
+	require_once("../clases/Conexion.php");
+	require_once("../clases/Administrador.php");
+
+	$con = new Conexion();
+	$con->Conectar();
+	$adm = new Administrador();
+	session_start();			
+	if(isset($_SESSION['admin']))
+	{
+
+		$admEnc = $adm->Nombre($_SESSION['admin']);
+	}
+	else
+	{
+		header('Location: ../Inicio.php');	
+	}
+
+	if(isset($_GET["adm"]))
+    {
+        session_destroy();
+        header('Location: ../Inicio.php');
+    }
+?>
+
 <body>
 	<!-- Cabecera Menu -->
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -48,6 +73,7 @@
 		    </form>
 		    <ul class="nav navbar-nav navbar-right">
 			    <li><p class="navbar-text navbar-right"><?php if(isset($admEnc)) echo $admEnc[0]["nombre"] ?></p></li>
+			    <li><a href="InicioAdm.php?adm=<?php echo $_SESSION['admin']; ?>">Cerrar Sesion</a></li>
 			</ul>
 		</div>
 	</nav>

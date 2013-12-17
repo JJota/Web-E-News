@@ -15,5 +15,17 @@
 				return false;
 			}
 		}
+
+		private $admEnc = array();
+		public function Nombre($mail)
+		{
+			$sql = "select * from admin where mail = '$mail'";
+			$consulta = mysql_query($sql);
+			while($fila = mysql_fetch_array($consulta))
+			{
+				$this->admEnc[]=$fila;
+			}
+			return $this->admEnc;
+		}
 	}
 ?>
